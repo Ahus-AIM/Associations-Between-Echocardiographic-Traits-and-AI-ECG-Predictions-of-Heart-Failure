@@ -1,0 +1,3 @@
+[submodule "external/heart_failure_detection"]
+	path = external/heart_failure_detection
+	url = https://github.com/Ahus-AIM/Heart-Failure-Detection.git
