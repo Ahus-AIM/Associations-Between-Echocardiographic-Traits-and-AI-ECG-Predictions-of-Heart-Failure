@@ -2,13 +2,13 @@ import numpy as np
 import pandas as pd
 
 
-def silverman_bandwidth(x):
+def silverman_bandwidth(x, const=0.9):
     x = np.asarray(x, float)
     n = max(len(x), 2)
     sd = np.std(x, ddof=1) if n > 1 else 1.0
     iqr = np.subtract(*np.percentile(x, [75, 25])) if n > 1 else 1.0
     sigma = min(sd, iqr / 1.34) if iqr > 0 else sd
-    return 0.9 * sigma * n ** (-1 / 5)
+    return const * sigma * n ** (-1 / 5)
 
 
 def _weighted_quantile(v, w, qs):
@@ -35,12 +35,12 @@ def inv_ecdf(u, x):
     return np.quantile(x, u, method="linear")
 
 
-def kernel_quantile_band_rankx(x, y, qs=(0.25, 0.75), n_grid=200):
+def kernel_quantile_band_rankx(x, y, qs, n_grid, const=0.9):
     x = np.asarray(x, float)
     y = np.asarray(y, float)
     u = rank_uniform(x)
     u_grid = np.linspace(0.001, 0.999, n_grid)
-    h = silverman_bandwidth(u)
+    h = silverman_bandwidth(u, const=const)
     U = (u[:, None] - u_grid[None, :]) / h
     W = np.exp(-0.5 * U**2)
     qlo = np.empty_like(u_grid, dtype=float)
