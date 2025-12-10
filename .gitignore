@@ -1,0 +1,20 @@
+# Ignore image/TeX outputs
+*.png
+*.pgf
+*.tex
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+
+# Generic cache directories
+cache/
+.cache/
+
+# Submodules
+external/
