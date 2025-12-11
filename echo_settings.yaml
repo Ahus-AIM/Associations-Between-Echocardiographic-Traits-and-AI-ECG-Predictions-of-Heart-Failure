@@ -1,0 +1,199 @@
+COMPACS_MAPPING:
+  LVEDVOL:
+    - V_GNLVEDVOL
+    - V_2DLVEDVOL
+    - V_GNLVEDVOLZD
+    - V_2DLVEDVOLZD
+  CI:
+    - V_GNLVCARDIND
+    - V_2DLVCARDIND
+  CO:
+    - V_GNLVCARDOUT
+    - V_DPLVCARDOUT
+  IVS:
+    - V_MMISDTHICK
+  PWT:
+    - V_MMLVPWDTHICK
+  MAPSE:
+    - V_2DLVMEANMAPSE
+    - V_MMLVLATMAPSE
+    - V_MMLVINFSEPMAPSE
+  LVEF:
+    - V_3DLVEF
+    - V_2DLVEF
+    - V_2DLVEF4CSSP
+    - V_2DLVEF2CSSP
+    - V_2DLVEF2C
+    - V_2DLVEF4CAL
+    - V_2DLVEF2CAL
+    - V_2DLVEFSBP
+    - V_GNLVEF
+    - V_GNLVEF_S
+  GLS:
+    - V_2DLVLS
+    - V_3DLVLS
+    - V_2DLVLSLAX
+    - V_2DLVLS4C
+    - V_2DLVLS2C
+  LVm:
+    - V_2DLVMASS
+    - V_GNLVMASS
+    - V_GNLVMASS_M
+    - V_MMLVMASS
+  RWT:
+    - V_2DLVRWTHICK
+    - V_GNLVRWTHICK
+    - V_GNLVRWTHICK_M
+    - V_MMLVRWTHICK
+  LAv:
+    - V_GNLAVOL
+    - V_2DLAVOL
+  RAv:
+    - V_GNRAVOL
+  E:
+    - V_DPMVEPEAKVEL
+  A:
+    - V_DPMVAPEAKVEL
+    - V_DPMVAVMAXVALS
+  LVM:
+    - V_GNLVMASS
+  E_DecelTime:
+    - V_DPMVEDECTIME
+    - V_DPMVPHT
+  "e'":
+    - V_DPMVEPPV
+  "E/e'":
+    - V_DPMVEELATRATIO
+    - V_DPMVEESEPTRATIO
+    - V_DPTVEELATRATIO
+  TAPSE:
+    - V_MMRVTAPSE
+  PASP:
+    - V_DPPAESPRESS
+
+MIN_MAX_CUTOFF_MAPPING:
+  CI: [0.1, 10.0]
+  CO: [0.1, 20.0]
+  IVT: [0.1, 5.0]
+  PWT: [0.1, 5.0]
+  MAPSE: [0.1, 3.0]
+  LVEF: [0.0, 100.0]
+  GLS: [-30.0, 0.0]
+  LVm: [15.0, 1000.0]
+  RWT: [0.1, 5.0]
+  LAv: [0.1, 320.0]
+  LAVi: [0.1, 400.0]
+  RAv: [0.1, 320.0]
+  E: [0.1, 5.0]
+  A: [0.2, 5.0]
+  E_DecelTime: [0.1, 800.0]
+  "e'": [1, 25]
+  "E/e'": [0.1, 60.0]
+  TAPSE: [0.1, 4.5]
+  PASP: [0.1, 100.0]
+  LVEDVOL: [10.0, 400.0]
+  LVEDVi: [10.0, 250.0]
+  LVMi: [10.0, 300.0]
+
+UNITS_MAPPING:
+  CI: "L/min/m²"
+  CO: "L/min"
+  IVT: "cm"
+  PWT: "cm"
+  MAPSE: "cm"
+  LVEF: "%"
+  GLS: "%"
+  LVm: "g"
+  RWT: ""
+  LAv: "mL"
+  LAVi: "mL/m²"
+  RAv: "mL"
+  E: "m/s"
+  A: "m/s"
+  E_DecelTime: "ms"
+  "e'": "cm/s"
+  "E/e'": ""
+  TAPSE: "cm"
+  PASP: "mmHg"
+  LVEDVOL: "mL"
+  LVEDVi: "mL/m²"
+  LVMi: "g/m²"
+
+COMORBIDITY_REGEX:
+  Hypertension:
+    - "^I1[0-5]"
+  COPD:
+    - "^J44"
+  Ischaemic heart disease:
+    - "^I2[0-5]"
+    - "^I251"
+    - "^I200"
+    - "^I209"
+  Atrial fibrillation:
+    - "^I48"
+    - "^I481"
+    - "^I482"
+    - "^I483"
+  Heart failure:
+    - "^I50"
+    - "^I42"
+    - "^I110"
+  Myocardial infarction:
+    - "^I21"
+    - "^I22"
+    - "^I252"
+
+COMORBIDITY_MAP:
+  Hypertension:
+    - "I10-I15"
+  COPD:
+    - "J44"
+  Ischaemic heart disease:
+    - "I20-I25"
+  Atrial fibrillation:
+    - "I48"
+  Heart failure:
+    - "I50"
+    - "I42"
+    - "I110"
+  Myocardial infarction:
+    - "I21"
+    - "I22"
+    - "I252"
+
+PARAMETERS:
+  - LVEF
+  - GLS
+  - "E/e'"
+  - A
+  - CI
+  - "e'"
+  - LAVi
+  - LVMi
+  - PASP
+  - E/A
+  - MAPSE
+  - IVS
+  - PWT
+  - LVEDVi
+  - TAPSE
+  - age
+  - sex
+
+PLOT_LIMS:
+  GLS: [-25.0, -5.0]
+  MAPSE: [0.5, 2.0]
+  LVEF: [20.0, 75.0]
+  LAVi: [10.0, 80.0]
+  PASP: [13.0, 70.0]
+  LVMi: [40.0, 160.0]
+  "E/e'" : [3.0, 25.0]
+  "e'": [3.0, 16.0]
+  TAPSE: [1.0, 3.5]
+  IVS: [0.55, 1.5]
+  PWT: [0.55, 1.4]
+  LVEDVi: [25.0, 125.0]
+  CI: [1.0, 4.5]
+  A: [0.25, 1.4]
+  E/A: [0.4, 2.5]
+  TRv: [1.5, 4.5]
