@@ -70,6 +70,10 @@ COMPACS_MAPPING:
     - V_MMRVTAPSE
   PASP:
     - V_DPPAESPRESS
+  TRv:
+    - V_DPTVPEAKVEL
+    - V_DPTVRGPEAKVEL
+    - V_DPTVANRGEPEAKVEL
 
 MIN_MAX_CUTOFF_MAPPING:
   CI: [0.1, 10.0]
@@ -94,6 +98,7 @@ MIN_MAX_CUTOFF_MAPPING:
   LVEDVOL: [10.0, 400.0]
   LVEDVi: [10.0, 250.0]
   LVMi: [10.0, 300.0]
+  TRv: [0.5, 5.0]
 
 UNITS_MAPPING:
   CI: "L/min/m²"
@@ -118,6 +123,7 @@ UNITS_MAPPING:
   LVEDVOL: "mL"
   LVEDVi: "mL/m²"
   LVMi: "g/m²"
+  TRv: "m/s"
 
 COMORBIDITY_REGEX:
   Hypertension:
@@ -149,17 +155,13 @@ COMORBIDITY_MAP:
   COPD:
     - "J44"
   Ischaemic heart disease:
-    - "I20-I25"
+    - "I20-25"
   Atrial fibrillation:
     - "I48"
   Heart failure:
-    - "I50"
-    - "I42"
-    - "I110"
+    - "I42,50,110"
   Myocardial infarction:
-    - "I21"
-    - "I22"
-    - "I252"
+    - "I21,22,252"
 
 PARAMETERS:
   - LVEF
@@ -197,3 +199,5 @@ PLOT_LIMS:
   A: [0.25, 1.4]
   E/A: [0.4, 2.5]
   TRv: [1.5, 4.5]
+
+N_BOOTSTRAP: 10000
