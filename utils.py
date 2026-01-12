@@ -35,21 +35,51 @@ def inv_ecdf(u, x):
     return np.quantile(x, u, method="linear")
 
 
-def kernel_quantile_band_rankx(x, y, qs, n_grid, const=0.9):
+def kernel_mean_quantile_band_rankx(x, y, qs, n_grid, const=0.9, eps=1e-12):
     x = np.asarray(x, float)
     y = np.asarray(y, float)
+
+    m = np.isfinite(x) & np.isfinite(y)
+    x = x[m]
+    y = y[m]
+
     u = rank_uniform(x)
     u_grid = np.linspace(0.001, 0.999, n_grid)
+
     h = silverman_bandwidth(u, const=const)
+    h = max(h, eps)
+
     U = (u[:, None] - u_grid[None, :]) / h
-    W = np.exp(-0.5 * U**2)
-    qlo = np.empty_like(u_grid, dtype=float)
-    qhi = np.empty_like(u_grid, dtype=float)
+    W = np.exp(-0.5 * U**2)  # Gaussian kernel (unnormalized ok; we normalize per grid)
+
+    qmean = np.empty(u_grid.size, dtype=float)
+    qmedian = np.empty(u_grid.size, dtype=float)
+    qlo = np.full(u_grid.size, np.nan, dtype=float)
+    qhi = np.full(u_grid.size, np.nan, dtype=float)
+
+    qs = np.asarray(qs, float)
+    need_median = not np.any(np.isclose(qs, 0.5))
+    qs_all = np.unique(np.concatenate([qs, [0.5]]) if need_median else qs)
+
+    med_idx = int(np.where(np.isclose(qs_all, 0.5))[0][0])
+
     for j in range(u_grid.size):
         wj = W[:, j]
-        if wj.sum() <= 0:
-            qlo[j] = qhi[j] = np.nan
-        else:
-            qlo[j], qhi[j] = _weighted_quantile(y, wj, qs)
+        sw = wj.sum()
+        if sw <= 0:
+            qmean[j] = np.nan
+            qmedian[j] = np.nan
+            continue
+
+        qmean[j] = np.dot(wj, y) / sw
+
+        q_all = _weighted_quantile(y, wj, qs_all)
+        qmedian[j] = q_all[med_idx]
+
+        if qs.size >= 1:
+            qlo[j] = _weighted_quantile(y, wj, [qs[0]])[0]
+        if qs.size >= 2:
+            qhi[j] = _weighted_quantile(y, wj, [qs[1]])[0]
+
     xg_real = inv_ecdf(u_grid, x)
-    return xg_real, qlo, qhi
+    return xg_real, qmean, qmedian, qlo, qhi

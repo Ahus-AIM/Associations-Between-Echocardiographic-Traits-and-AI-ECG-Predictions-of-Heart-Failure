@@ -101,7 +101,7 @@ MIN_MAX_CUTOFF_MAPPING:
   TRv: [0.5, 5.0]
 
 UNITS_MAPPING:
-  CI: "L/min/m²"
+  CI: "L/min/m$^2$"
   CO: "L/min"
   IVT: "cm"
   PWT: "cm"
@@ -111,7 +111,7 @@ UNITS_MAPPING:
   LVm: "g"
   RWT: ""
   LAv: "mL"
-  LAVi: "mL/m²"
+  LAVi: "mL/m$^2$"
   RAv: "mL"
   E: "m/s"
   A: "m/s"
@@ -121,8 +121,8 @@ UNITS_MAPPING:
   TAPSE: "cm"
   PASP: "mmHg"
   LVEDVOL: "mL"
-  LVEDVi: "mL/m²"
-  LVMi: "g/m²"
+  LVEDVi: "mL/m$^2$"
+  LVMi: "g/m$^2$"
   TRv: "m/s"
 
 COMORBIDITY_REGEX:
