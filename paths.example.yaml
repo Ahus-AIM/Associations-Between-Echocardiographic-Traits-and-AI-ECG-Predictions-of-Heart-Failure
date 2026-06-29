@@ -1,0 +1,13 @@
+# Copy this file to paths.yaml and edit the values for your machine.
+# paths.yaml is gitignored because it may contain local or sensitive data paths.
+
+hf_predictions: /path/to/heart-failure-detection/sandbox/ensembled_testset.csv
+sl12_index: /path/to/ecg/ecg-pt/index-sl12.csv
+
+ahus_echo: /path/to/ecg/tabular/raw/echo_22092025.csv
+ahus_echo_fnr_map: /path/to/ecg/tabular/raw/2025_32_echo_mapping_foedselsnr.csv
+ahus_diagnoses: /path/to/ecg/tabular/raw/2025_32_Diagnoser.csv
+ahus_demography: /path/to/ecg/tabular/raw/2025_32_Demorgafi.csv
+ahus_medicines: /path/to/ecg/tabular/raw/2025_32_Medisiner.csv
+
+echonext_base: /path/to/physionet.org/files/echonext/1.1.0

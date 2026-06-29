@@ -117,7 +117,7 @@ UNITS_MAPPING:
   A: "m/s"
   E_DecelTime: "ms"
   "e'": "cm/s"
-  "E/e'": ""
+  "E/e'": "-"
   TAPSE: "cm"
   PASP: "mmHg"
   LVEDVOL: "mL"

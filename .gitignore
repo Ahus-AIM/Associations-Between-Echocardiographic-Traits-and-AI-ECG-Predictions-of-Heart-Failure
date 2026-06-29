@@ -16,5 +16,8 @@ venv/
 cache/
 .cache/
 
+# Local machine data pointers
+paths.yaml
+
 # Submodules
 external/

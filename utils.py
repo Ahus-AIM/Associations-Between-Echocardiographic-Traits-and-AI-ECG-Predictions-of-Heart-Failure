@@ -1,5 +1,30 @@
 import numpy as np
 import pandas as pd
+import yaml
+from pathlib import Path
+
+
+def _paths_to_path_objects(value):
+    if isinstance(value, dict):
+        return {key: _paths_to_path_objects(item) for key, item in value.items()}
+    if isinstance(value, str):
+        return Path(value).expanduser()
+    return value
+
+
+def load_paths(config_path="paths.yaml"):
+    """Load machine-local data pointers from a gitignored YAML file."""
+    config_path = Path(config_path)
+    if not config_path.exists():
+        raise FileNotFoundError(
+            f"Missing {config_path}. Create it from paths.example.yaml and point it "
+            "to the local datasets before running the notebooks."
+        )
+
+    with config_path.open("r") as f:
+        paths = yaml.safe_load(f) or {}
+
+    return _paths_to_path_objects(paths)
 
 
 def silverman_bandwidth(x, const=0.9):
